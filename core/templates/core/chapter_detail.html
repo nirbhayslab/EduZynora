@@ -1,0 +1,19 @@
+{% extends "core/base.html" %}
+
+{% block content %}
+<h2>{{ chapter.name }}</h2>
+
+{% for section, items in resources.items %}
+  <h3>{{ section|title }}</h3>
+
+  <ul>
+    {% for resource in items %}
+      <li>{{ resource.title }}</li>
+    {% empty %}
+      <li>No {{ section }} available.</li>
+    {% endfor %}
+  </ul>
+{% endfor %}
+
+{% endblock %}
+  
