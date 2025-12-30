@@ -1,0 +1,18 @@
+{% extends "core/base.html" %}
+
+{% block content %}
+<h2>{{ subject.name }} ({{ class.name }})</h2>
+
+<h3>Chapters</h3>
+<ul>
+    {% for chapter in chapters %}
+        <li>
+            <a href="{% url 'core:chapter_detail' class.slug subject.slug chapter.slug %}">
+                {{ chapter.name }}
+            </a>
+        </li>
+    {% empty %}
+        <li>No chapters available.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

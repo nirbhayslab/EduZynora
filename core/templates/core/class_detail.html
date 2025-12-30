@@ -1,0 +1,19 @@
+{% extends "core/base.html" %}
+
+{% block content %}
+<h2>{{ class.name }}</h2>
+
+<h3>Subjects</h3>
+<ul>
+    {% for subject in subjects %}
+        <li>
+            <a href="{% url 'core:subject_detail' class.slug subject.slug %}">
+
+                {{ subject.name }}
+            </a>
+        </li>
+    {% empty %}
+        <li>No subjects found.</li>
+    {% endfor %}
+</ul>
+{% endblock %}
