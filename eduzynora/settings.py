@@ -34,6 +34,9 @@ ALLOWED_HOSTS = [
     "127.0.0.1",
     "localhost",
     ".onrender.com",
+    "eduzynora.in",
+    "www.eduzynora.in",
+    "eduzynora.onrender.com"
 ]
 
 
