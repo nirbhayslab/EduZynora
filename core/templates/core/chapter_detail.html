@@ -8,7 +8,8 @@
 
   <ul>
     {% for resource in items %}
-      <li>{{ resource.title }}</li>
+      <li><strong>{{ resource.title }}</strong></li>
+      <ul><li>{{ resource.content }}</li></ul>
     {% empty %}
       <li>No {{ section }} available.</li>
     {% endfor %}
