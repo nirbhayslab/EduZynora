@@ -39,6 +39,12 @@ ALLOWED_HOSTS = [
     "eduzynora.onrender.com"
 ]
 
+CSRF_TRUSTED_ORIGINS = [
+    "https://eduzynora.in",
+    "https://www.eduzynora.in",
+]
+
+
 
 # Application definition
 
