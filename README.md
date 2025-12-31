@@ -1,26 +1,34 @@
-# EduZynora
-A KVS student-built platform for notes, PDFs, Sample papers and educational resources, useful for all learners
+# EduZynora — v0.1
 
+EduZynora is a **student-built academic learning platform for students**, focused on structured, syllabus-based content.
+
+Version v0.1 establishes the core backend foundation.
+live : https://eduzynora.in/
 
 ---
 
-## Purpose
-EduZynora was initiated as a student-built platform to organize and provide educational materials such as notes, PDFs, and sample papers.
+## What Exists in v0.1
 
-## Current Scope
-This repository currently contains the initial project setup and concept files.  
-The core application structure and full resource management features are not yet implemented.
+- Academic hierarchy: Class → Subject → Chapter → Resource
+- Slug-based, readable URLs
+- Ordered chapters and resources
+- Resource types (notes, examples, exercises, PDFs, videos)
+- Model-level validation to prevent invalid content
+- Django Admin used as the content control layer
+- Minimal templates to verify end-to-end flow
 
-## Tech Stack (Intended)
-- Python / Django (expected)
-- HTML • CSS • JavaScript  
-*(Actual implemented code may be minimal at this stage)*
+---
+
+## What v0.1 Is Not
+
+- No authentication or user accounts
+- No progress tracking
+- No interactivity or personalization
+- No frontend polish
+- No APIs
+
+---
 
 ## Status
-Paused — planned for future iteration.
 
-## Notes
-This project represents an early concept and foundation for EduZynora.  
-Development is currently paused while focus is placed on other higher-priority systems.
-
-If revisited, this repo will evolve into a structured web platform for educational resources.
+**v0.1 is frozen.**
