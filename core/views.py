@@ -8,6 +8,10 @@ def home(request):
     classes = Class.objects.all()
     return render(request, "core/home.html", {"classes": classes})
 
+def classes(request):
+    classes = Class.objects.all()
+    return render(request, "core/classes.html", {"classes": classes})
+
 def class_detail(request, class_slug):
     class_obj = get_object_or_404(Class, slug=class_slug)
     subjects = class_obj.subjects.all()
