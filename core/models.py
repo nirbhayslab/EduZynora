@@ -14,6 +14,8 @@ class Subject(models.Model):
     name = models.CharField(max_length=50)
     slug = models.SlugField()
     class_level = models.ForeignKey(Class, on_delete=models.CASCADE, related_name="subjects")
+    description = models.CharField(blank=True)
+    
 
     class Meta:
         unique_together = ("slug", "class_level")
@@ -25,6 +27,7 @@ class Chapter(models.Model):
     name = models.CharField(max_length=100)
     slug = models.SlugField()
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE, related_name="chapters")
+    description = models.CharField(blank=True)
     order = models.PositiveIntegerField(default=0)
 
     class Meta:
