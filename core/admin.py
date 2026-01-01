@@ -7,16 +7,17 @@ class ClassAdmin(admin.ModelAdmin):
 
 @admin.register(Subject)
 class SubjectAdmin(admin.ModelAdmin):
-    list_display = ("name", "class_level")
+    list_display = ("name", "class_level", 'description')
     list_filter = ("class_level",)
     prepopulated_fields = {"slug": ("name",)}
+
+
 @admin.register(Chapter)
-
-
 class ChapterAdmin(admin.ModelAdmin):
     list_display = ("name", "subject", "order")
     list_filter = ("subject",)
     prepopulated_fields = {"slug": ("name",)}
+    
 @admin.register(Resource)
 
 class ResourceAdmin(admin.ModelAdmin):    
