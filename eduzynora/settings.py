@@ -145,3 +145,6 @@ STATICFILES_DIRS =[
     BASE_DIR / "static"
     ]
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage" 
+
+# set BigAutoField as default primary key
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
