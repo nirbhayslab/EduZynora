@@ -25,4 +25,8 @@ urlpatterns = [
         views.chapter_detail,
         name="chapter_detail",
     ),
+    
+    path(
+        "about", views.about, name='about'
+    )
 ]
