@@ -66,3 +66,6 @@ def chapter_detail(request, class_slug, subject_slug, chapter_slug):
             "resources": resources,
         },
     )
+
+def about(request):
+    return render(request, 'core/about.html')
