@@ -19,7 +19,7 @@ def class_detail(request, class_slug):
     return render(
         request,
         "core/class_detail.html",
-        {"class": class_obj, "subjects": subjects},
+        {"class_obj": class_obj, "subjects": subjects},
     )
 
 def subject_detail(request, class_slug, subject_slug):
@@ -33,7 +33,7 @@ def subject_detail(request, class_slug, subject_slug):
         request,
         "core/subject_detail.html",
         {
-            "class": class_obj,
+            "class_obj": class_obj,
             "subject": subject,
             "chapters": chapters,
         },
@@ -48,7 +48,7 @@ def chapter_detail(request, class_slug, subject_slug, chapter_slug):
         Chapter, slug=chapter_slug, subject=subject
     )
 
-    resources = resources = {
+    resources = {
     "notes": chapter.resources.filter(resource_type="notes"),
     "examples": chapter.resources.filter(resource_type="example"),
     "exercises": chapter.resources.filter(resource_type="exercise"),
@@ -60,7 +60,7 @@ def chapter_detail(request, class_slug, subject_slug, chapter_slug):
         request,
         "core/chapter_detail.html",
         {
-            "class": class_obj,
+            "class_obj": class_obj,
             "subject": subject,
             "chapter": chapter,
             "resources": resources,
