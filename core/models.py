@@ -2,10 +2,10 @@ from django.db import models
 from django.core.exceptions import ValidationError
 
 
-class Class(models.Model):
+class SchoolClass(models.Model):
     name = models.CharField(max_length=20)
     slug = models.SlugField(unique=True)
-
+    order = models.PositiveIntegerField(default=0)
     def __str__(self):
         return self.name
 
@@ -13,7 +13,7 @@ class Class(models.Model):
 class Subject(models.Model):
     name = models.CharField(max_length=50)
     slug = models.SlugField()
-    class_level = models.ForeignKey(Class, on_delete=models.CASCADE, related_name="subjects")
+    class_level = models.ForeignKey(SchoolClass, on_delete=models.CASCADE, related_name="subjects")
     description = models.CharField(blank=True)
     
 

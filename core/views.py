@@ -2,18 +2,18 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.shortcuts import render, get_object_or_404
-from .models import Class, Subject, Chapter
+from .models import SchoolClass, Subject, Chapter
 
 def home(request):
-    classes = Class.objects.all()
+    classes = SchoolClass.objects.all()
     return render(request, "core/home.html", {"classes": classes})
 
 def classes(request):
-    classes = Class.objects.all()
+    classes = SchoolClass.objects.all()
     return render(request, "core/classes.html", {"classes": classes})
 
 def class_detail(request, class_slug):
-    class_obj = get_object_or_404(Class, slug=class_slug)
+    class_obj = get_object_or_404(SchoolClass, slug=class_slug)
     subjects = class_obj.subjects.all()
 
     return render(
@@ -23,7 +23,7 @@ def class_detail(request, class_slug):
     )
 
 def subject_detail(request, class_slug, subject_slug):
-    class_obj = get_object_or_404(Class, slug=class_slug)
+    class_obj = get_object_or_404(SchoolClass, slug=class_slug)
     subject = get_object_or_404(
         Subject, slug=subject_slug, class_level=class_obj
     )
@@ -40,7 +40,7 @@ def subject_detail(request, class_slug, subject_slug):
     )
 
 def chapter_detail(request, class_slug, subject_slug, chapter_slug):
-    class_obj = get_object_or_404(Class, slug=class_slug)
+    class_obj = get_object_or_404(SchoolClass, slug=class_slug)
     subject = get_object_or_404(
         Subject, slug=subject_slug, class_level=class_obj
     )

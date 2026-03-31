@@ -1,7 +1,7 @@
 from django.contrib import admin
-from .models import Class, Subject, Chapter, Resource
+from .models import SchoolClass, Subject, Chapter, Resource
 
-@admin.register(Class)
+@admin.register(SchoolClass)
 class ClassAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("name",)}
 
