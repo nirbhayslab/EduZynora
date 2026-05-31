@@ -1,22 +1,23 @@
 from django.contrib import admin
-from .models import Class, Subject, Chapter, Resource
+from .models import SchoolClass, Subject, Chapter, Resource
 
-@admin.register(Class)
+@admin.register(SchoolClass)
 class ClassAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("name",)}
 
 @admin.register(Subject)
 class SubjectAdmin(admin.ModelAdmin):
-    list_display = ("name", "class_level")
+    list_display = ("name", "class_level", 'description')
     list_filter = ("class_level",)
     prepopulated_fields = {"slug": ("name",)}
+
+
 @admin.register(Chapter)
-
-
 class ChapterAdmin(admin.ModelAdmin):
     list_display = ("name", "subject", "order")
     list_filter = ("subject",)
     prepopulated_fields = {"slug": ("name",)}
+    
 @admin.register(Resource)
 
 class ResourceAdmin(admin.ModelAdmin):    

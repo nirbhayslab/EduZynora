@@ -1,19 +1,64 @@
-{% extends "core/base.html" %}
+{% extends "base.html" %}
+
+{% block title %}
+EduZynora | Clear Notes. Zero Distractions.
+{% endblock %}
+
+{% block description %}
+EduZynora is a serious study platform for Classes 8–10 with structured, NCERT-aligned notes. No videos. No fluff.
+{% endblock %}
 
 {% block content %}
-<h2>Classes</h2>
+<main class="page-container home-page">
 
+<section class="hero">
 
-<ul>
-    {% for class in classes %}
-        <li>
-           <a href="{% url 'core:class_detail' class.slug %}">
+    <span class="version-badge">
+        Version 0.1(Early Access) · Academic Focus
+    </span>
 
-                {{ class.name }}
-            </a>
-        </li>
-    {% empty %}
-        <li>No classes available.</li>
-    {% endfor %}
-</ul>
+    <h1>
+        EDUZYNORA - Clear Notes.<br>
+        <span class="muted">Zero Distractions.</span>
+    </h1>
+
+    <p class="hero-subtext">
+        The serious study platform for Classes 8–10.<br>
+        No videos, no gamification, no fluff.
+        Just structured, high-quality NCERT notes.
+    </p>
+
+    <div class="hero-actions">
+        <a href="{% url 'core:classes' %}" class="btn btn-primary">
+            Start Studying
+        </a>
+        <a href="{% url 'core:classes' %}" class="btn btn-secondary">
+            Browse Chapters
+        </a>
+    </div>
+
+</section>
+
+<h3 class="features-title">Why EduZynora?</h3>
+<section class="features">
+
+    <feature class="feature">
+        <h3>Distraction Free</h3>
+        <p>
+            No ads, no pop-ups, no clickbait.
+            Just pure, focused studying.
+        </p>
+    </feature>
+
+    <feature class="feature">
+        <h3>NCERT Aligned</h3>
+        <p>
+            Every note matches NCERT guidelines.
+            Perfect for exam preparation.
+        </p>
+    </feature>
+</section>
+
+</main>
+
 {% endblock %}

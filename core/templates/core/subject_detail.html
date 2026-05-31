@@ -1,18 +1,76 @@
-{% extends "core/base.html" %}
+{% extends "base.html" %}
+
+{% block title %}
+{{ subject.name }} | Class {{ class_obj.name }} | EduZynora
+{% endblock %}
+
+{% block description %}
+NCERT-aligned chapters for {{ subject.name }} in Class {{ class_obj.name }}.
+{% endblock %}
 
 {% block content %}
-<h2>{{ subject.name }} ({{ class.name }})</h2>
 
-<h3>Chapters</h3>
-<ul>
-    {% for chapter in chapters %}
-        <li>
-            <a href="{% url 'core:chapter_detail' class.slug subject.slug chapter.slug %}">
-                {{ chapter.name }}
-            </a>
-        </li>
-    {% empty %}
-        <li>No chapters available.</li>
-    {% endfor %}
-</ul>
+<section class="subject-detail-page">
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <a href="{% url 'core:class_detail' class_obj.slug %}" class="back-link">
+            ← {{ class_obj.name }}
+        </a>
+
+        <h1>
+            {{ subject.name }}
+        </h1>
+
+        {% if subject.description %}
+            <p class="page-subtitle">
+                {{ subject.description }}
+            </p>
+        {% endif %}
+    </header>
+
+    <!-- Chapter Section Header -->
+    <div class="section-header">
+        <h2>NCERT Curriculum</h2>
+        <span class="badge">
+            {{ chapters|length }} Chapters
+        </span>
+    </div>
+
+    <!-- Chapters List -->
+    <section class="list">
+        {% if chapters %}
+            {% for chapter in chapters %}
+                <a href="{% url 'core:chapter_detail' class_obj.slug subject.slug chapter.slug %}"
+                   class="card">
+
+                    <div class="card-header">
+                        <div>
+                            <h3 class="card-title">
+                                {{ chapter.name }}
+                            </h3>
+
+                            {% if chapter.description %}
+                                <p class="card-subtitle">
+                                    {{ chapter.description }}
+                                </p>
+                            {% endif %}
+                        </div>
+
+                        {% if chapter.resources.count %}
+                            <span class="badge">
+                                {{ chapter.resources.count }} Resources
+                            </span>
+                        {% endif %}
+                    </div>
+
+                </a>
+            {% endfor %}
+        {% else %}
+            <p>No chapters available for this subject.</p>
+        {% endif %}
+    </section>
+
+</section>
+
 {% endblock %}

@@ -1,0 +1,20 @@
+{% load static %}
+<nav class="navbar" aria-label="Primary navigation">
+
+  <a href="{% url 'core:home' %}" class="navbar-brand">
+    EduZynora
+  </a>
+
+  <ul class="navbar-links">
+    <li>
+      <a href="{% url 'core:home' %}">Home</a>
+    </li>
+    <li>
+      <a href="{% url 'core:classes' %}">Classes</a>
+    </li>
+    <li>
+      <a href="{% url 'core:about' %}">About</a>
+    </li>
+  </ul>
+
+</nav>

@@ -1,20 +1,115 @@
-{% extends "core/base.html" %}
+{% extends "base.html" %}
 
+{% block title %}
+{{ chapter.name }} | {{ subject.name }} |{{ class_obj.name }} | EduZynora
+{% endblock %}
+
+{% block description %}
+{{ chapter.name }} notes for {{ subject.name }} {{ class_obj.name }}. NCERT-aligned, exam-focused content.
+{% endblock %}
+{% block extra_head %}
+  {% include "partials/mathjax.html" %}
+{% endblock %}
 {% block content %}
-<h2>{{ chapter.name }}</h2>
 
-{% for section, items in resources.items %}
-  <h3>{{ section|title }}</h3>
+<section class="chapter-detail-page">
 
-  <ul>
-    {% for resource in items %}
-      <li><strong>{{ resource.title }}</strong></li>
-      <ul><li>{{ resource.content }}</li></ul>
-    {% empty %}
-      <li>No {{ section }} available.</li>
-    {% endfor %}
-  </ul>
-{% endfor %}
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb">
+        <a href="{% url 'core:classes' %}">Classes</a> /
+        <a href="{% url 'core:class_detail' class_obj.slug %}">{{ class_obj.name }}</a> /
+        <a href="{% url 'core:subject_detail' class_obj.slug subject.slug %}">{{ subject.name }}</a> /
+        <span>{{ chapter.name }}</span>
+    </nav>
+
+    <!-- Chapter Header -->
+    <header class="chapter-header">
+        <h1>{{ chapter.name }}</h1>
+
+        {% if chapter.description %}
+            <p class="chapter-intro">
+                {{ chapter.description }}
+            </p>
+        {% endif %}
+    </header>
+
+    <!-- Notes -->
+    {% if resources.notes %}
+        <section class="content-section">
+            <h2>Notes</h2>
+
+            {% for note in resources.notes %}
+                <article class="content-block">
+                    {{ note.content|safe }}
+                </article>
+            {% endfor %}
+        </section>
+    {% endif %}
+
+    <!-- Examples -->
+    {% if resources.examples %}
+        <section class="content-section">
+            <h2>Examples</h2>
+
+            {% for example in resources.examples %}
+                <article class="example-card">
+                    <strong>Standard Example</strong>
+                    <div class="example-content">
+                        {{ example.content|safe }}
+                    </div>
+                </article>
+            {% endfor %}
+        </section>
+    {% endif %}
+
+    <!-- Exercises -->
+    {% if resources.exercises %}
+        <section class="content-section">
+            <h2>Exercises</h2>
+
+            {% for exercise in resources.exercises %}
+                <article class="content-block">
+                    {{ exercise.content|safe }}
+                </article>
+            {% endfor %}
+        </section>
+    {% endif %}
+
+    <!-- PDFs -->
+    {% if resources.pdfs %}
+        <section class="content-section">
+            <h2>PDF Resources</h2>
+
+            <ul class="resource-list">
+                {% for pdf in resources.pdfs %}
+                    <li>
+                        <a href="{{ pdf.file.url }}" target="_blank">
+                            {{ pdf.title }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </section>
+      
+      {% endif %}
+
+    <!-- Videos (kept minimal) -->
+    {% if resources.videos %}
+        <section class="content-section">
+            <h2>Reference Videos</h2>
+
+            <ul class="resource-list">
+                {% for video in resources.videos %}
+                    <li>
+                        <a href="{{ video.url }}" target="_blank">
+                            {{ video.title }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </section>
+    {% endif %}
+
+</section>
 
 {% endblock %}
-  

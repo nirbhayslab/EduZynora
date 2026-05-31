@@ -5,6 +5,8 @@ app_name = "core"
 
 urlpatterns = [
     path("", views.home, name="home"),
+    
+    path('classes/', views.classes, name='classes'),
 
     path(
         "class/<slug:class_slug>/",
@@ -23,4 +25,8 @@ urlpatterns = [
         views.chapter_detail,
         name="chapter_detail",
     ),
+    
+    path(
+        "about", views.about, name='about'
+    )
 ]
