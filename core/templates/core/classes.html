@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}
+Select Your Class | EduZynora
+{% endblock %}
+
+{% block description %}
+Choose your class to access structured, NCERT-aligned notes on EduZynora.
+{% endblock %}
+
+{% block content %}
+<main class="page-container classes-container">
+
+<section class="classes-page">
+
+    <header class="page-header">
+        <h1>Select Your Class</h1>
+        <p class="page-subtitle">
+            Choose your grade to access structured notes.
+        </p>
+    </header>
+
+    <section class="list">
+        {% if classes %}
+            {% for class_obj in classes %}
+                <a href="{% url 'core:class_detail' class_obj.slug %}" class="class-card">
+
+                    <div class="class-card-header">
+                        <div>
+                            <h2 class="class-card-title">
+                                {{ class_obj.name }}
+                            </h2>
+                            {% if class_obj.description %}
+                                <p class="class-card-subtitle">
+                                    {{ class_obj.description }}
+                                </p>
+                            {% else %}
+                                <p class="class-card-subtitle">
+                                    Explore notes and resources for {{ class_obj.name }}.
+                                </p>
+                            {% endif %}
+                        </div>
+                        <div class="card-icon">
+                            &rarr;
+                        </div>
+                    </div>
+
+                </a>
+            {% endfor %}
+        {% else %}
+            <p>No classes available.</p>
+        {% endif %}
+    </section>
+
+</section>
+
+</main>
+
+{% endblock %}

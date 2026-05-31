@@ -1,20 +1,30 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>EduZynora</title>
+  <meta charset="UTF-8">
+
+  <title>{% block title %}EduZynora{% endblock %}</title>
+
+  <meta name="description" content="{% block description %}EduZynora – Structured NCERT-focused learning with clarity.{% endblock %}">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta name="robots" content="index, follow">
+
+  <link rel="stylesheet" href="{% static 'css/base.css' %}">
+
+  {% block extra_head %}{% endblock %}
 </head>
+
 <body>
 
-    <header>
-        <h1><a href="{% url 'core:home' %}">EduZynora</a></h1>
-        <hr>
-    </header>
+  {% include "partials/navbar.html" %}
 
-    <main>
-        {% block content %}
-        {% endblock %}
-    </main>
+  <main class="page-container">
+    {% block content %}{% endblock %}
+  </main>
+
+  {% include "partials/footer.html" %}
 
 </body>
 </html>

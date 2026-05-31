@@ -1,19 +1,93 @@
 {% extends "base.html" %}
 
+{% block title %}
+Class {{ class_obj.name }} | EduZynora
+{% endblock %}
+
+{% block description %}
+Subjects and chapters for Class {{ class_obj.name }} on EduZynora.
+{% endblock %}
+
 {% block content %}
-<h2>{{ class.name }}</h2>
+<main class="page-container">
 
-<h3>Subjects</h3>
-<ul>
-    {% for subject in subjects %}
-        <li>
-            <a href="{% url 'core:subject_detail' class.slug subject.slug %}">
+<section class="class-detail-page">
 
-                {{ subject.name }}
-            </a>
-        </li>
-    {% empty %}
-        <li>No subjects found.</li>
-    {% endfor %}
-</ul>
+    <!-- Page Header -->
+    <header class="page-header">
+        <a href="{% url 'core:classes' %}" class="back-link">
+            ← Classes
+        </a>
+
+        <h1>
+           {{ class_obj.name }}
+        </h1>
+
+        {% if class_obj.description %}
+            <p class="page-subtitle">
+                {{ class_obj.description }}
+            </p>
+        {% else %}
+            <p class="page-subtitle">
+                No description available.
+            </p>
+        {% endif %}
+    </header>
+
+   <!-- Subjects List -->
+<section class="subject-list">
+    {% if subjects %}
+        {% for subject in subjects %}
+            <div class="subject-card">
+
+                <div class="subject-card-header">
+                    <!-- Left: Title + description -->
+                    <div class="subject-card-main">
+                        <h2 class="subject-card-title">
+                            {{ subject.name }}
+                        </h2>
+
+                        {% if subject.description %}
+                            <p class="card-subtitle">
+                                {{ subject.description }}
+                            </p>
+                        {% endif %}
+                                    <!-- Actions -->
+                <div class="subject-cards-btn">
+                      <button
+                        class="btn-secondary btn-card"
+                        onclick="location.href='{% url 'core:subject_detail' class_obj.slug subject.slug %}'">
+                        View Subject
+                    </button>
+                </div>
+                    </div>
+
+                    <!-- Right: Chapter count -->
+                    {% comment %} {% with subject.chapters.count as chapter_count %}
+                        {% if chapter_count %}
+                            <span class="badge">
+                                {{ chapter_count }} Ch.
+                            </span>
+                        {% endif %}
+                    {% endwith %} {% endcomment %}
+                </div>
+
+
+                  
+                    </div>
+
+            </div>
+        {% endfor %}
+    {% else %}
+        <p class="empty-state">
+            No subjects available for this class.
+        </p>
+    {% endif %}
+</section>
+
+
+</section>
+
+</main>
+
 {% endblock %}
