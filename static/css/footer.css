@@ -1,0 +1,15 @@
+/* Footer Style */
+
+.site-footer {
+    text-align: center;
+    padding: 0.5rem;
+    background-color: var(--color-bg);
+    border-top: 1px solid var(--color-border);
+    color: var(--color-text-muted);
+    bottom: 0;
+    width: 100%;
+}
+.site-footer p {
+    margin: 0.5rem 0;
+    font-size: clamp(0.875rem, 1vw, 1rem);
+}
